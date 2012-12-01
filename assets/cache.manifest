@@ -1,0 +1,12 @@
+CACHE MANIFEST
+#Versioned by WebApp Bootloader
+#VER d5aa56a12daa975a0c8bde920ababdca
+
+CACHE:
+http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
+js/bootloader.js
+css/welcome.css
+images/welcome-bg.jpg
+
+NETWORK:
+*
