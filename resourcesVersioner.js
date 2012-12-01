@@ -22,7 +22,7 @@ var writeManifest = function (baseDir, src, dest, callback) {
 
 		template = template.substring(0, filesStartIdx - 27) + filesStr.trim() + template.substring(filesStartIdx + filesEndIdx + 2);
 
-		var concatFiles = function(files, sep, callback, str){
+		var concatFiles = function(files, callback, str){
 			str = str || '';
 			var resource = files.shift();
 			if (resource) {
@@ -31,15 +31,15 @@ var writeManifest = function (baseDir, src, dest, callback) {
 						console.log('Error during reading file ' + resource, err);
 					} else {
 					}
-					str += (data || '') + sep;
-					concatFiles(files, sep, callback, str);
+					str += baseDir + '/' + resource + '=[' + (data || '') + '];';
+					concatFiles(files, callback, str);
 				});
 			} else {
 				callback(str);
 			}
 		};
 
-		concatFiles(files, '||', function(data){
+		concatFiles(files, function(data){
 			var hash = crypto.createHash('md5').update(data.toString()).digest("hex");
 			var manifestStr = template.replace(/{versioned.hash}/g, hash);
 			fs.writeFile(baseDir + '/' + dest, manifestStr, function (err) {
