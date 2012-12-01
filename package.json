@@ -1,13 +1,12 @@
 {
-  "name": "application-name",
+  "name": "WebAppBootloaderSample",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node server"
   },
   "dependencies": {
     "express": "3.0.3",
-    "ejs": "*",
-    "less-middleware": "*"
+    "ejs": "*"
   }
 }

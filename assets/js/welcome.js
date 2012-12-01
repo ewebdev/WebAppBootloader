@@ -35,7 +35,7 @@ jQuery(function () {
 		'<ul>' +
 			'<li>Edit cache.manifest.template (<em>DO NOT manually edit</em> the cache.manifest file since it will be overridden on each server start!)</li>' +
 			'<li>Edit the resources array in updateResourcesVer.js (<em>DO NOT manually edit</em> resources.json file since it will be overridden on each server start!)</li>' +
-			'<li>Run <code>node app.js</code> (web server) or <code>node updateResourcesVer</code> to refresh cache manifest and versioned resources files</li>' +
+			'<li>Run <code>node server.js</code> (web server) or <code>node updateResourcesVer</code> to refresh cache manifest and versioned resources files</li>' +
 			'<li>For a deeper dive, take a look also at <code>updateResourcesVer.js</code>, <code>resourcesVersioner.js</code>, <code>assets/js/bootloader.js</code> and <code>assets/js/welcome.js</code></li>' +
 		'</ul>');
 
