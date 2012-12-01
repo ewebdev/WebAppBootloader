@@ -1,39 +1,44 @@
+/* Updating resources versions index file */
+
 var ResourcesVersioner = require('./resourcesVersioner.js');
 
-// Updating resources versions index file
-
+/* edit "resources" array to include your webapp's static assets
+ - use "ifIsNot: []" and "ifIs: []" for conditioned loading
+ - use "defer: true" to init (inject resources to page) only after calling bootloader.activate()
+ otherwise, assets will be injected immediately
+*/
 var resources = [
 	{
 		"type": "css",
 		"url": "css/sencha-touch.css",
-		"lazy": true
+		"defer": true
 	},
 	{
 		"type": "css",
 		"url": "css/app.css",
-		"lazy": true
+		"defer": true
 	},
 	{
 		"type": "js",
 		"url": "js/dependencies/sencha-touch.js",
-		"lazy": true
+		"defer": true
 	},
 	{
 		"type": "js",
 		"url": "js/dependencies/highcharts.js",
-		"lazy": true,
+		"defer": true,
 		"ifIsNot": ["android"]
 	},
 	{
 		"type": "js",
 		"url": "js/dependencies/highcharts.android.js",
-		"lazy": true,
+		"defer": true,
 		"ifIs": ["android"]
 	},
 	{
 		"type": "js",
 		"url": "js/app/index.js",
-		"lazy": true
+		"defer": true
 	}
 ];
 

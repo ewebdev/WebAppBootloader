@@ -11,11 +11,15 @@
  * 
  * Tested on WebKit
  * 
- * Dependencies:
- * -------------
- * jQuery
- * Node.js (for building versioned cache manifest and versioned resources index files)
- * 
+ * Dependencies
+ * ------------
+ * - jQuery
+ * - Node.js (for building versioned cache manifest and versioned resources index files)
+ *
+ * Usage
+ * -----
+ * bootloader.ready(callback) - add callbacks to be called when all resources are finished loaded
+ * bootloader.activate() - injects deferred scripts (start app)
  */
 
 (function () {
@@ -62,7 +66,7 @@
 
 	var bootloader = window.bootloader = { isReady: false, callbacks: [] },
 		manifestUrl = document.getElementsByTagName('html')[0].attributes['load-resources'].value,
-		lazyScripts = [],
+		defferedScripts = [],
 		deviceInfo = getDeviceData();
 
 	if (window.location.search.toLowerCase().search('clearcache') > -1) {
@@ -112,12 +116,12 @@
 				isModified && storeResource('CachedVersion', ver);
 				_log('Completed loading resources.');
 				clearUnusedResources();
-				bootloader.initLazy = function () {
-					if (lazyScripts.length) {
+				bootloader.activate = function () {
+					if (defferedScripts.length) {
 						var s;
-						while (s = lazyScripts.shift()) {
+						while (s = defferedScripts.shift()) {
 							document.body.appendChild(s);
-							//_log('lazy-loaded resource');
+							//_log('deffered-loaded resource');
 						}
 					}
 					$(document.body).removeClass('preloaded');
@@ -171,8 +175,8 @@
 			var script = document.createElement("script");
 			script.innerHTML = content;
 			script.async = resource.async;
-			if (resource.lazy) {
-				lazyScripts.push(script);
+			if (resource.defer) {
+				defferedScripts.push(script);
 			} else {
 				document.body.appendChild(script);
 			}
