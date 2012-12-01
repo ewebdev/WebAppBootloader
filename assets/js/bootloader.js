@@ -148,7 +148,7 @@
 	}
 
 	function getResourcesUrls(callback) {
-		var online = navigator.onLine && (window.location.search.toLowerCase().search('offline') == -1);
+		var online = navigator.onLine && (window.location.search.toLowerCase().search('offline') === -1);
 		var handle = function (data) {
 			try {
 				var manifest = JSON.parse(data || '{}');
@@ -160,8 +160,12 @@
 		if (online) {
 			_log('Online mode, downloading manifest file.');
 			ajax(baseUrl + manifestUrl + '?_' + new Date().getTime(), function (data) {
-				localStorage['bootloader.manifest'] = data;
-				handle(data);
+				if (data) {
+					localStorage['bootloader.manifest'] = data;
+					handle(data);
+				} else {
+					handle(localStorage['bootloader.manifest']);
+				}
 			});
 		} else {
 			_log('Offline mode, trying to read stored manifest.');
