@@ -7,10 +7,13 @@
 - Node.js (for building versioned cache manifest and versioned resources index files)
 
 ###Usage
+
 ####bootloader.ready(callback)
-    add callbacks to be called when all resources are finished loaded
+ - add callbacks to be called when all resources are finished loaded
+
 ####bootloader.activate()
-    injects deferred scripts (start app)
+ - injects deferred scripts (start app)
+
 ####Some "Getting started" instructions located in this sample app (run "node server" and open http://localhost:5000)
 
 ####Tested on WebKit
